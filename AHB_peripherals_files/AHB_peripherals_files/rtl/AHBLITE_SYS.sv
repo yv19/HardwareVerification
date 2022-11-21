@@ -113,13 +113,16 @@ assign          	IRQ = 32'h00000000;
 // Clock
 wire            	fclk;                 // Free running clock
 // Reset
-wire            	reset_n = RESET;
+wire reset_n = ~RESET;
 
-// Clock divider, divide the frequency by two, hence less time constraint 
+// Clock divider, divide the frequency by two, hence less time constraint
 reg clk_div;
-always @(posedge CLK)
+always @(posedge CLK or negedge reset_n)
 begin
-    clk_div=~clk_div;
+if (!reset_n)
+clk_div = 1'b0;
+else
+clk_div=~clk_div;
 end
 
 assign fclk = clk_div; 
@@ -337,5 +340,25 @@ AHBGPIO uAHBGPIO(
 	.GPIOIN({8'b00000000,SW[7:0]}),
 	.GPIOOUT(LED[7:0])
 	);
+
+// Bind GPIO interface with GPIO peripheral 
+bind AHBGPIO : uAHBGPIO AHBGPIO_Interface uAHBGPIO_Interface(
+    .HCLK(HCLK),
+	.HRESETn(HRESETn),
+	.HADDR(HADDR),
+	.HWDATA(HWDATA),
+	.HREADY(HREADY),
+	.HWRITE(HWRITE),
+	.HTRANS(HTRANS),
+
+	.HSEL(HSEL),
+	.HRDATA(HRDATA),
+	.HREADYOUT(HREADYOUT),
+    
+	.GPIOIN(GPIOIN),
+	.GPIOOUT(GPIOOUT),
+    .gpio_data_addr(gpio_data_addr),
+    .gpio_dir_addr(gpio_dir_addr)
+);
 	
 endmodule
