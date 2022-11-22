@@ -45,4 +45,11 @@ module AHBGPIO_Interface(
                                     gpio_dir_addr == 8'h04
                                     )
                                     else $error("The value of GPIOOUT is %h", gpio_dir_addr);
+
+    gpio_dir_addr_assert: assert property(
+                                    @(posedge HCLK) disable iff(!HRESETn)
+                                    (HSEL && HREADY) |-> gpio_dir_addr == 8'h04
+                                    )
+                                    else $error("The value of GPIOOUT is %h", gpio_dir_addr);
+    
 endmodule

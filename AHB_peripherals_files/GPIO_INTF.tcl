@@ -9,7 +9,7 @@ elaborate -top ahblite_sys_tb
 
 # Setup global clocks and resets on the testbench
 clock CLK
-reset -expression !(RESET)
+reset -expression RESET
 
 # Setup task
 task -set <embedded>
