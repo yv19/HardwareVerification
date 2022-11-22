@@ -1,0 +1,35 @@
+# Reading pref.tcl
+# ** Warning: License feature 'msimviewer' will expire in 8 days.
+# vsim ahblite_sys_tb -gui 
+# Start time: 12:53:59 on Nov 22,2022
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: rtl/AHBLITE_SYS.sv(347): (vopt-2685) [TFMPC] - Too few port connections for 'uAHBGPIO_Interface'.  Expected 22, found 14.
+# ** Warning: rtl/AHBLITE_SYS.sv(347): (vopt-2718) [TFMPC] - Missing connection for port 'last_HSEL'.
+# ** Warning: rtl/AHBLITE_SYS.sv(347): (vopt-2718) [TFMPC] - Missing connection for port 'last_HWRITE'.
+# ** Warning: rtl/AHBLITE_SYS.sv(347): (vopt-2718) [TFMPC] - Missing connection for port 'last_HTRANS'.
+# ** Warning: rtl/AHBLITE_SYS.sv(347): (vopt-2718) [TFMPC] - Missing connection for port 'last_HADDR'.
+# ** Warning: rtl/AHBLITE_SYS.sv(347): (vopt-2718) [TFMPC] - Missing connection for port 'gpio_data_next'.
+# ** Warning: rtl/AHBLITE_SYS.sv(347): (vopt-2718) [TFMPC] - Missing connection for port 'gpio_dir'.
+# ** Warning: rtl/AHBLITE_SYS.sv(347): (vopt-2718) [TFMPC] - Missing connection for port 'gpio_datain'.
+# ** Warning: rtl/AHBLITE_SYS.sv(347): (vopt-2718) [TFMPC] - Missing connection for port 'gpio_dataout'.
+# ** Warning: License feature 'msimhdlsim' will expire in 8 days.
+# Loading sv_std.std
+# Loading work.ahblite_sys_tb(fast)
+# Loading work.AHBLITE_SYS(fast)
+# Loading work.CORTEXM0INTEGRATION(fast)
+# Loading work.cortexm0ds_logic(fast)
+# Loading work.AHBDCD(fast)
+# Loading work.AHBMUX(fast)
+# Loading work.AHB2MEM(fast)
+# Loading work.AHBGPIO(fast)
+# Loading work.AHBGPIO_Interface(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (16) does not match connection size (8) for port 'GPIOOUT'. The port definition is at: rtl/AHB_GPIO/AHBGPIO_original.sv(53).
+#    Time: 0 ps  Iteration: 0  Instance: /ahblite_sys_tb/dut/uAHBGPIO File: rtl/AHBLITE_SYS.sv Line: 329
+# ** Warning: License feature 'mtiverification' will expire in 8 days.
+log -r /*
+add wave *
+run -all
+# Break key hit
+# Simulation stop requested.
+# End time: 12:54:23 on Nov 22,2022, Elapsed time: 0:00:24
+# Errors: 0, Warnings: 10

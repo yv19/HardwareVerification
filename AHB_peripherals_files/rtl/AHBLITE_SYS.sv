@@ -113,16 +113,18 @@ assign          	IRQ = 32'h00000000;
 // Clock
 wire            	fclk;                 // Free running clock
 // Reset
-wire reset_n = ~RESET;
+wire            	reset_n = ~RESET;
 
-// Clock divider, divide the frequency by two, hence less time constraint
+// Clock divider, divide the frequency by two, hence less time constraint 
+
 reg clk_div;
+
 always @(posedge CLK or negedge reset_n)
 begin
-if (!reset_n)
-clk_div = 1'b0;
-else
-clk_div=~clk_div;
+    if (!reset_n)
+      clk_div = 1'b0;
+    else
+      clk_div=~clk_div;
 end
 
 assign fclk = clk_div; 
@@ -306,22 +308,22 @@ AHB2MEM uAHB2MEM (
 	.HREADYOUT(HREADYOUT_MEM)
 );
 
-// AHBLite VGA Peripheral
-AHBVGA uAHBVGA (
-    .HCLK(HCLK), 
-    .HRESETn(HRESETn), 
-    .HADDR(HADDR), 
-    .HWDATA(HWDATA), 
-    .HREADY(HREADY), 
-    .HWRITE(HWRITE), 
-    .HTRANS(HTRANS), 
-    .HSEL(HSEL_VGA), 
-    .HRDATA(HRDATA_VGA), 
-    .HREADYOUT(HREADYOUT_VGA), 
-    .HSYNC(HSYNC), 
-    .VSYNC(VSYNC), 
-    .RGB({VGARED,VGAGREEN,VGABLUE})
-    );
+// // AHBLite VGA Peripheral
+// AHBVGA uAHBVGA (
+//     .HCLK(HCLK), 
+//     .HRESETn(HRESETn), 
+//     .HADDR(HADDR), 
+//     .HWDATA(HWDATA), 
+//     .HREADY(HREADY), 
+//     .HWRITE(HWRITE), 
+//     .HTRANS(HTRANS), 
+//     .HSEL(HSEL_VGA), 
+//     .HRDATA(HRDATA_VGA), 
+//     .HREADYOUT(HREADYOUT_VGA), 
+//     .HSYNC(HSYNC), 
+//     .VSYNC(VSYNC), 
+//     .RGB({VGARED,VGAGREEN,VGABLUE})
+//     );
 
 // AHBLite GPIO	
 AHBGPIO uAHBGPIO(
