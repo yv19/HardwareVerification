@@ -2,7 +2,7 @@ rtl/AHBLITE_SYS.sv
 rtl/AHB_BRAM/AHB2BRAM.sv
 rtl/AHB_BUS/AHBDCD.sv
 rtl/AHB_BUS/AHBMUX.sv
-rtl/AHB_GPIO/AHBGPIO_original.sv
+rtl/AHB_GPIO/AHBGPIO_modified.sv
 rtl/AHB_GPIO/AHBGPIO_INTF.sv
 rtl/AHB_VGA/AHBVGASYS.sv
 rtl/AHB_VGA/counter.sv

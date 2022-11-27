@@ -55,27 +55,35 @@ module AHBGPIO(
   
   );
   
-  localparam [7:0] gpio_data_addr = 8'h00;
-  localparam [7:0] gpio_dir_addr = 8'h04;
+  localparam [31:0] gpio_data_addr = 32'h53000000;
+  localparam [31:0] gpio_dir_addr = 32'h53000004;
   
   reg [15:0] gpio_dataout;
   reg [15:0] gpio_datain;
   reg [15:0] gpio_dir;
-  reg [15:0] gpio_data_next;
   reg [31:0] last_HADDR;
   reg [1:0] last_HTRANS;
   reg last_HWRITE;
   reg last_HSEL;
+  reg last_HREADY;
   
   integer i;
   
   assign HREADYOUT = 1'b1;
   
 // Set Registers from address phase  
-  always @(posedge HCLK)
+  always @(posedge HCLK, negedge HRESETn)
   begin
-    if(HREADY)
+    if(!HRESETn)
     begin
+      last_HADDR <= 16'h0000;
+      last_HTRANS <= 16'h0000;
+      last_HWRITE <= 16'h0000;
+      last_HSEL <= 16'h0000;
+    end
+    else
+    begin
+      last_HREADY <= HREADY;
       last_HADDR <= HADDR;
       last_HTRANS <= HTRANS;
       last_HWRITE <= HWRITE;
@@ -90,10 +98,10 @@ module AHBGPIO(
     begin
       gpio_dir <= 16'h0000;
     end
-    else if ((last_HADDR[7:0] == gpio_dir_addr) & last_HSEL & last_HWRITE & last_HTRANS[1])
+    else if ((last_HADDR == gpio_dir_addr) & last_HSEL & last_HWRITE & last_HTRANS[1] & last_HREADY & ((HWDATA[15:0] == 16'h0001) | (HWDATA[15:0] == 16'h0000)))
       gpio_dir <= HWDATA[15:0];
   end
-  
+
   // Update output value
   always @(posedge HCLK, negedge HRESETn)
   begin
@@ -101,7 +109,7 @@ module AHBGPIO(
     begin
       gpio_dataout <= 16'h0000;
     end
-    else if ((gpio_dir == 16'h0001) & (last_HADDR[7:0] == gpio_data_addr) & last_HSEL & last_HWRITE & last_HTRANS[1])
+    else if ((gpio_dir == 16'h0001) & (last_HADDR == gpio_data_addr) & last_HSEL & last_HWRITE & last_HREADY & last_HTRANS[1])
       gpio_dataout <= HWDATA[15:0];
   end
   

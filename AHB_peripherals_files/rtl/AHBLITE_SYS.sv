@@ -359,8 +359,15 @@ bind AHBGPIO : uAHBGPIO AHBGPIO_Interface uAHBGPIO_Interface(
     
 	.GPIOIN(GPIOIN),
 	.GPIOOUT(GPIOOUT),
-    .gpio_data_addr(gpio_data_addr),
-    .gpio_dir_addr(gpio_dir_addr)
+
+	.gpio_dataout(gpio_dataout),
+    .gpio_datain(gpio_datain),
+    .gpio_dir(gpio_dir),
+    .gpio_data_next(gpio_data_next),
+    .last_HADDR(last_HADDR),
+    .last_HTRANS(last_HTRANS),
+    .last_HWRITE(last_HWRITE),
+    .last_HSEL(last_HSEL)
 );
 	
 endmodule

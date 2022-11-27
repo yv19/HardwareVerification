@@ -6,7 +6,9 @@ module ahblite_sys_tb(
 reg RESET, CLK;
 wire [7:0] LED;
 
-AHBLITE_SYS dut(.CLK(CLK), .RESET(RESET), .LED(LED));
+localparam [7:0] SW = 8'h11;
+
+AHBLITE_SYS dut(.CLK(CLK), .RESET(RESET), .LED(LED), .SW(SW));
 
 // Note: you can modify this to give a 50MHz clock or whatever is appropriate
 

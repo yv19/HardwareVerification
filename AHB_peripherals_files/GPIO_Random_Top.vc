@@ -1,0 +1,3 @@
+rtl/AHB_GPIO/AHBGPIO_modified.sv
+stimulus/GPIO_Random_Top.sv
+stimulus/GPIO_stimulus.sv
