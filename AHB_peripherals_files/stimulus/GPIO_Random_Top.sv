@@ -45,6 +45,10 @@ AHBGPIO uAHBGPIO(
 	.GPIOOUT(LED[7:0])
 	);
 
+// Instantiate the Ideal Model to Generate the 
+
+// Instantiate the Monitor to Check that the GPIO output and Ideal Model are the same
+
 initial
 begin
     HCLK=0;

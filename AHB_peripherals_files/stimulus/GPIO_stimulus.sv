@@ -72,15 +72,29 @@ module GPIO_Stimulus(
 
     always @(posedge HCLK, negedge HRESETn)
     begin
-        assert (p.randomize) else $fatal;
+        if(!HRESETn)
+        begin
+            HADDR_reg <= 0;
+            HTRANS_reg <= 0;
+            HWDATA_reg <= 0;
+            HWRITE_reg <= 0;
+            HSEL_reg <= 0;
+            HREADY_reg <= 0;
+            GPIOIN_reg <= 0; 
+        end
+        else
+        begin
+            assert (p.randomize) else $fatal;
 
-        HADDR_reg <= p.HADDR;
-        HTRANS_reg <= p.HTRANS;
-        HWDATA_reg <= p.HWDATA;
-        HWRITE_reg <= p.HWRITE;
-        HSEL_reg <= p.HSEL;
-        HREADY_reg <= p.HREADY;
-        GPIOIN_reg <= p.GPIOIN;
+            // Potentially to-do: Switch to modports and interfaces
+            HADDR_reg <= p.HADDR;
+            HTRANS_reg <= p.HTRANS;
+            HWDATA_reg <= p.HWDATA;
+            HWRITE_reg <= p.HWRITE;
+            HSEL_reg <= p.HSEL;
+            HREADY_reg <= p.HREADY;
+            GPIOIN_reg <= p.GPIOIN; 
+        end
     end
 
     assign HADDR = HADDR_reg;
