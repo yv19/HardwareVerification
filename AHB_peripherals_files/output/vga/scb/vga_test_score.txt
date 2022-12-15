@@ -1,0 +1,7 @@
+Test Type 0: 0/3 
+Test Type 1: 0/2 
+Test Type 2: 0/1 
+Test Type 3: 0/2 
+Test Type 4: 0/2 
+Test Type 5: 0/4 
+Test Type 6: 1/1 

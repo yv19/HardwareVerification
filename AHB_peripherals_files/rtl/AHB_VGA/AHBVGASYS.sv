@@ -34,23 +34,26 @@
 // OF DOUBT, NO PATENT LICENSES ARE BEING LICENSED UNDER THIS LICENSE AGREEMENT.//
 //////////////////////////////////////////////////////////////////////////////////
 
+// //declaring the signals
+// ahbvga_if.HCLK ahbvga_if.HRESETn
+//   // Outputs from driver
+//   logic [31:0] `DUT_IF.HADDR;
+//   logic [31:0] `DUT_IF.HWDATA;
+//   logic `DUT_IF.HREADY;
+//   logic `DUT_IF.HWRITE;
+//   logic [1:0] `DUT_IF.HTRANS;
+//   logic `DUT_IF.HSEL;
+//   // Inputs to monitor
+//   logic [31:0] ahbvga_if.HRDATA;
+//   logic ahbvga_if.HREADYOUT;
+//   logic ahbvga_if.HSYNC;
+//   logic ahbvga_if.VSYNC;
+//   logic [7:0] ahbvga_if.RGB;
+
+`define DUT_IF ahbvga_if.dut_cb
 
 module AHBVGA(
-  input wire HCLK,
-  input wire HRESETn,
-  input wire [31:0] HADDR,
-  input wire [31:0] HWDATA,
-  input wire HREADY,
-  input wire HWRITE,
-  input wire [1:0] HTRANS,
-  input wire HSEL,
-  
-  output wire [31:0] HRDATA,
-  output wire HREADYOUT,
-  
-  output wire HSYNC,
-  output wire VSYNC,
-  output wire [7:0] RGB
+  vga_intf.DUT ahbvga_if
 );
   //Register locations
   localparam IMAGEADDR = 4'hA;
@@ -62,7 +65,7 @@ module AHBVGA(
   reg [1:0] last_HTRANS;
   reg [31:0] last_HADDR;
   
-  wire [7:0] console_rgb; //console rgb signal              
+  wire [7:0] console_rgb; //console ahbvga_if.rgb signal              
   wire [9:0] pixel_x;     //current x pixel
   wire [9:0] pixel_y;     //current y pixel
   
@@ -80,34 +83,34 @@ module AHBVGA(
   reg [7:0] cin;
   
   
-  always @(posedge HCLK)
-  if(HREADY)
+  always @(posedge ahbvga_if.HCLK)
+  if(`DUT_IF.HREADY)
     begin
-      last_HADDR <= HADDR;
-      last_HWRITE <= HWRITE;
-      last_HSEL <= HSEL;
-      last_HTRANS <= HTRANS;
+      last_HADDR <= `DUT_IF.HADDR;
+      last_HWRITE <= `DUT_IF.HWRITE;
+      last_HSEL <= `DUT_IF.HSEL;
+      last_HTRANS <= `DUT_IF.HTRANS;
     end
     
   //Give time for the screen to refresh before writing
-  assign HREADYOUT = ~scroll;   
+  assign ahbvga_if.HREADYOUT = ~scroll;   
  
   //VGA interface: control the synchronization and color signals for a particular resolution
   VGAInterface uVGAInterface (
-    .CLK(HCLK),
-    .resetn(HRESETn), 
+    .CLK(ahbvga_if.HCLK), 
     .COLOUR_IN(cin), 
-    .cout(RGB), 
-    .hs(HSYNC), 
-    .vs(VSYNC), 
+    .resetn(ahbvga_if.HRESETn),
+    .cout(ahbvga_if.RGB), 
+    .hs(ahbvga_if.HSYNC), 
+    .vs(ahbvga_if.VSYNC), 
     .addrh(pixel_x), 
     .addrv(pixel_y)
     );
 
   //VGA console module: output the pixels in the text region
   vga_console uvga_console(
-    .clk(HCLK),
-    .resetn(HRESETn),
+    .clk(ahbvga_if.HCLK),
+    .resetn(ahbvga_if.HRESETn),
     .pixel_x(pixel_x),
     .pixel_y(pixel_y),
     .text_rgb(console_rgb),
@@ -118,8 +121,8 @@ module AHBVGA(
   
   //VGA image buffer: output the pixels in the image region
   vga_image uvga_image(
-    .clk(HCLK),
-    .resetn(HRESETn),
+    .clk(ahbvga_if.HCLK),
+    .resetn(ahbvga_if.HRESETn),
     .address(last_HADDR[15:2]),
     .pixel_x(pixel_x),
     .pixel_y(pixel_y),
@@ -132,17 +135,17 @@ module AHBVGA(
   assign sel_image = (last_HADDR[23:0] != 12'h000000000000);
   
   //Set console write and write data
-  always @(posedge HCLK, negedge HRESETn)
+  always @(posedge ahbvga_if.HCLK, negedge ahbvga_if.HRESETn)
   begin
-    if(!HRESETn)
+    if(!ahbvga_if.HRESETn)
       begin
         console_write <= 0;
         console_wdata <= 0;
       end
-    else if(last_HWRITE & last_HSEL & last_HTRANS[1] & HREADYOUT & sel_console)
+    else if(last_HWRITE & last_HSEL & last_HTRANS[1] & ahbvga_if.HREADYOUT & sel_console)
       begin
         console_write <= 1'b1;
-        console_wdata <= HWDATA[7:0];
+        console_wdata <= `DUT_IF.HWDATA[7:0];
       end
     else
       begin
@@ -152,17 +155,17 @@ module AHBVGA(
   end
   
   //Set image write and image write data
-  always @(posedge HCLK, negedge HRESETn)
+  always @(posedge ahbvga_if.HCLK, negedge ahbvga_if.HRESETn)
   begin
-    if(!HRESETn)
+    if(!ahbvga_if.HRESETn)
       begin
         image_write <= 0;
         image_wdata <= 0;
       end
-    else if(last_HWRITE & last_HSEL & last_HTRANS[1] & HREADYOUT & sel_image)
+    else if(last_HWRITE & last_HSEL & last_HTRANS[1] & ahbvga_if.HREADYOUT & sel_image)
       begin
         image_write <= 1'b1;
-        image_wdata <= HWDATA[7:0];
+        image_wdata <= `DUT_IF.HWDATA[7:0];
       end
     else
       begin
@@ -171,10 +174,10 @@ module AHBVGA(
       end
   end
   
-  //Select the rgb color for a particular region
+  //Select the ahbvga_if.rgb color for a particular region
   always @*
   begin
-    if(!HRESETn)
+    if(!ahbvga_if.HRESETn)
       cin <= 8'h00;
     else 
       if(pixel_x[9:0]< 240 )

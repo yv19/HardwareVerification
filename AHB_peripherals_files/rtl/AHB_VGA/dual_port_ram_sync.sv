@@ -56,8 +56,9 @@ module dual_port_ram_sync
   
   always @ (posedge clk)
   begin
-    if(we)
+    if(we) begin
       ram[addr_a] <= din_a;
+    end
     addr_a_reg <= addr_a;
     addr_b_reg <= addr_b;
   end

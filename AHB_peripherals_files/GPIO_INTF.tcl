@@ -3,13 +3,13 @@
 clear -all
 analyze -clear
 # Set the file to be compiled and analyzed
-analyze -sv -f ahblite_sys.vc
+analyze -sv -f GPIO_formal.vc
 # Define the testbench to be the top level module
-elaborate -top ahblite_sys_tb
+elaborate -top AHBGPIO
 
 # Setup global clocks and resets on the testbench
-clock CLK
-reset -expression RESET
+clock ahbgpio_if.HCLK
+reset -expression !(ahbgpio_if.HRESETn)
 
 # Setup task
 task -set <embedded>
