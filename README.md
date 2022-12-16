@@ -75,7 +75,7 @@ This section will depict how to perform different tests on the GPIO peripheral. 
 
 - The results of these tests will be monitored and saved onto the file `gpio_test_score.txt` on the folder [scb](https://github.com/yv19/HardwareVerification/tree/main/AHB_peripherals_files/output/vga/scb) in the output directory.
 
-- A list of function signitures for the GPIO Unit Level Tests are listed in [this (implement)]() file if in any case the more testcases are needed to be added.
+- A list of function signitures for the GPIO Unit Level Tests are listed in [this](https://github.com/yv19/HardwareVerification/blob/main/GPIO_function_signatures.md) file if in any case the more testcases are needed to be added.
 
 - After putting the selected testcases inside the `gpio_test.sv` file, navigate to the `AHB_peripherals_files` directory. 
 
@@ -102,7 +102,7 @@ The seed is randomized between every run which means every time the test is re-r
 
 - The results of these tests will be monitored and saved onto the file `vga_test_score.txt` on the folder [scb](https://github.com/yv19/HardwareVerification/tree/main/AHB_peripherals_files/output/vga/scb) in the output directory.
 
-- A list of function signitures for the GPIO Unit Level Tests are listed in [this (implement)]() file if in any case the more testcases are needed to be added.
+- A list of function signitures for the GPIO Unit Level Tests are listed in [this](https://github.com/yv19/HardwareVerification/blob/main/VGA_function_signatures.md) file if in any case the more testcases are needed to be added.
 
 - After putting the selected testcases inside the `gpio_test.sv` file, navigate to the `AHB_peripherals_files` directory. 
 
