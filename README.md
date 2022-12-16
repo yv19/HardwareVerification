@@ -11,7 +11,7 @@ The high level overview of the project is to verify 2 peripherals given accordin
 
 # <u> Verification Plan + Report </u>
 
-- The Verification Plan can be found [here]().
+- The Verification Plan can be found [here](https://github.com/yv19/HardwareVerification/blob/main/Verification%20Plan.md).
 - The Verification Report can be found [here]().
 
 # <u> Directory Structure </u>
