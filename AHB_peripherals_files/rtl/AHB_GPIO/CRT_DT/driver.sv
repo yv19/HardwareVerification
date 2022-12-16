@@ -51,19 +51,18 @@ class driver;
 
       @(posedge gpio_vif.HCLK); // Interface clock edge
 
-      gpio_vif.HADDR <= trans.HADDR;
-      gpio_vif.HREADY <= trans.HREADY;      
+      gpio_vif.HADDR <= trans.HADDR;    
       gpio_vif.HWRITE <= trans.HWRITE;
-      gpio_vif.HTRANS <= trans.HTRANS;
-      gpio_vif.HSEL <= trans.HSEL;
       gpio_vif.GPIOIN <= trans.GPIOIN;
       gpio_vif.PARITYSEL <= trans.PARITYSEL;
+
+      gpio_vif.HSEL <= trans.HSEL;
+      gpio_vif.HREADY <=  trans.HREADY;  
+      gpio_vif.HTRANS <= trans.HTRANS;
 
       @(posedge gpio_vif.HCLK); // Interface clock edge
 
       gpio_vif.HWDATA <= trans.HWDATA;
-
-      @(posedge gpio_vif.HCLK); // Interface clock edge
 
       // This is when the update for GPIO should happen
 

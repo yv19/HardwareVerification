@@ -36,11 +36,11 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module GenericCounter(
-	CLK,
-	RESET,
-	ENABLE_IN,
-	TRIG_OUT,
-	COUNT
+     CLK,
+     RESET,
+     ENABLE_IN,
+	  TRIG_OUT,
+	  COUNT
     );
 	parameter COUNTER_WIDTH=4;
 	parameter COUNTER_MAX=4;
@@ -55,7 +55,7 @@ module GenericCounter(
 	reg triggerout;
 
 
-	always@(posedge CLK, posedge RESET)begin
+	always@(posedge CLK)begin
 		if (RESET)
 			counter<=0;
 		else begin
@@ -68,7 +68,7 @@ module GenericCounter(
 		end
 	end
 	
-	always@(posedge CLK, posedge RESET)begin
+	always@(posedge CLK)begin
 		if (RESET)
 			triggerout<=0;
 		else begin

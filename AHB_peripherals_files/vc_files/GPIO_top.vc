@@ -1,0 +1,10 @@
+rtl/AHB_GPIO/AHBGPIO_if.sv
+rtl/AHB_GPIO/AHBGPIO_modified.sv
+rtl/AHB_GPIO/CRT_DT/model.sv
+rtl/AHB_GPIO/CRT_DT/gpio_tb_top.sv
+rtl/AHB_GPIO/CRT_DT/gpio_test.sv
+rtl/AHB_GPIO/CRT_DT/environment.sv
+rtl/AHB_GPIO/CRT_DT/generator.sv
+rtl/AHB_GPIO/CRT_DT/driver.sv
+rtl/AHB_GPIO/CRT_DT/transaction.sv
+rtl/AHB_GPIO/CRT_DT/scoreboard.sv

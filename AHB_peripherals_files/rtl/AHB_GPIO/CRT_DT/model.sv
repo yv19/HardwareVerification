@@ -6,10 +6,8 @@
 class model;
   mailbox model2scb;
 
-  logic last_HREADYOUT;
   logic [31:0] last_HRDATA;
   logic [16:0] last_GPIOOUT;
-  logic last_PARITYERR;
   logic PARITY_OUT;
 
   logic [15:0] gpio_dataout;
@@ -20,80 +18,86 @@ class model;
   function new(mailbox model2scb);
     //getting the mailbox handle from env
     this.model2scb = model2scb;
+
+    gpio_dataout = 0;
+    gpio_datain = 0;
+    gpio_dir = 0;
+    PARITY_OUT = 0;
+    last_GPIOOUT = 0;
+    last_HRDATA = 0;
   endfunction
 
   task sendOutputToScb(transaction trans);
-    automatic transaction expectedTrans;
-    generateExpectedValue(trans, expectedTrans);
-    model2scb.put(expectedTrans);
+    model2scb.put(generateExpectedValue(trans));
   endtask
 
-  function transaction generateFullFrame(transaction transInput, transaction expectedTransOutput);
+  function transaction generateExpectedValue(transaction transInput);
+    automatic transaction expectedTransOutput;
+    expectedTransOutput = new();
     if ( // Invalid Input
-        (trans.HADDR != 32'h53000000) ||
-        (trans.HADDR != 32'h53000004 && (trans.HWDATA !== 32'h00000001 && trans.HWDATA !== 32'h00000000)) || 
-        (trans.HWRITE == 1'b0) || 
-        (trans.HSEL == 1'b0) || 
-        (trans.HTRANS == 2'd0) || 
-        (trans.HREADY == 1'b0)
+        ((transInput.HADDR != 32'h53000000) &&
+        (transInput.HADDR != 32'h53000004 && (transInput.HWDATA !== 32'h00000001 && transInput.HWDATA !== 32'h00000000))) ||
+        (transInput.HWRITE == 1'b0) ||
+        (transInput.HSEL == 1'b0) ||
+        (transInput.HTRANS == 2'd0) ||
+        (transInput.HREADY == 1'b0)
         ) 
     begin
+      $display("Invalid input");
+      PARITY_OUT = ^gpio_dataout ^ transInput.PARITYSEL;
       if (gpio_dir == 0) begin
         // Store new gpio datain
         gpio_datain = transInput.GPIOIN;
-        expectedTransOutput.HRDATA = gpio_datain;
-        // Compute new parity error
-        expectedTransOutput.PARITYERR = ^transInput.GPIOIN ^ transInput.PARITYSEL ^ transInput.GPIOIN[16];
-
-        last_HRDATA = expectedTransOutput.HRDATA;
-        last_PARITYERR = expectedTransOutput.PARITYERR
+        expectedTransOutput.HRDATA = {16'h0, gpio_datain};
       end
       else begin
-        expectedTransOutput.HRDATA = last_HRDATA;
-        expectedTransOutput.PARITYERR = last_PARITYERR;
+        expectedTransOutput.HRDATA = {16'h0, gpio_dataout};
       end
-      expectedTransOutput.GPIOOUT = last_GPIOOUT;
+      expectedTransOutput.GPIOOUT = {PARITY_OUT, gpio_dataout};
     end
     else begin // Valid Input
+      $display("Valid input");
       // If we are updating the address register of the GPIO block
-      if (trans.HADDR == 32'h53000004) begin
+      if (transInput.HADDR == 32'h53000004) begin
         gpio_dir = transInput.HWDATA;
-        if (curr_gpio_dir == 1) begin // output
+        PARITY_OUT = ^gpio_dataout ^ transInput.PARITYSEL;
+        expectedTransOutput.GPIOOUT = {PARITY_OUT, gpio_dataout};
+        if (gpio_dir == 1) begin // output
           // Update HRDATA to be gpio_dataout
-          expectedTransOutput.HRDATA[15:0] = gpio_dataout;
-          expectedTransOutput.PARITYERR = last_PARITYERR;
+          expectedTransOutput.HRDATA = {16'h0, gpio_dataout};
         end
         else begin // input
           // HRDATA == GPIOIN
           gpio_datain = transInput.GPIOIN;
-          expectedTransOutput.PARITYERR = ^transInput.GPIOIN ^ transInput.PARITYSEL ^ transInput.GPIOIN[16];
-          expectedTransOutput.HRDATA = gpio_datain;
+          expectedTransOutput.HRDATA = {16'h0, gpio_datain};
         end
       end
       // If we are updating the data register of the GPIO block
       else begin
-        if (curr_gpio_dir == 1) begin // output
-          // Update the gpio dir register
+        if (gpio_dir == 1) begin // output
           gpio_dataout = transInput.HWDATA;
-          last_PARITYERR = ; // calculate parity error
+          PARITY_OUT = ^gpio_dataout ^ transInput.PARITYSEL;
+          $display("Parity select out is %h", PARITY_OUT);
+          expectedTransOutput.GPIOOUT = {PARITY_OUT, gpio_dataout};
+          // Update HRDATA to be gpio_dataout
+          expectedTransOutput.HRDATA = {16'h0, gpio_dataout};
+        end
+        else begin
+          // Store new gpio datain
+          gpio_datain = transInput.GPIOIN;
+          expectedTransOutput.HRDATA = {16'h0, gpio_datain};
+          PARITY_OUT = ^gpio_dataout ^ transInput.PARITYSEL;
+          expectedTransOutput.GPIOOUT = {PARITY_OUT, gpio_dataout};
         end
       end
     end
-    expectedTransOutput.HREADYOUT = 1'b1;
-    shiftCounter++;
-    res = insertCharIntoFrame(res, x, y, generateFullChar(trans.HWDATA[i]));
-    return res;
+    // Compute new parity error
+    last_HRDATA = expectedTransOutput.HRDATA;
+    last_GPIOOUT = expectedTransOutput.GPIOOUT;
+    expectedTransOutput.PARITYERR = ^transInput.GPIOIN ^ transInput.PARITYSEL ^ transInput.GPIOIN[16];
+    expectedTransOutput.HREADYOUT = 1;
 
-    // $display("%p", res);
-  endfunction
-
-  function frame insertCharIntoFrame(frame fullFrame, int x, int y, char_t data);
-    for (int j = 0; j < $size(data); j++) begin
-      for (int i = 0; i < $size(data[0]); i++) begin
-        fullFrame[y*16 + j][x*8 + i] = data[j][i];
-      end
-    end
-    return fullFrame;
+    return expectedTransOutput;
   endfunction
 
 endclass

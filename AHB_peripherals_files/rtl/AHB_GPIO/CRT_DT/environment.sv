@@ -1,6 +1,6 @@
 `include "driver.sv"
 `include "monitor.sv"
-`include "fake_scoreboard.sv"
+`include "scoreboard.sv"
 // `include "model.sv"
 
 class environment;
@@ -16,6 +16,9 @@ class environment;
   mailbox mon2scb;
   mailbox driv2mon;
   mailbox model2scb;
+
+  // define model of GPIO
+  model mod;
   
   //event for synchronization between generator and test
   event gen_ended;
@@ -32,12 +35,14 @@ class environment;
     gen2driv = new();
     mon2scb  = new();
     driv2mon = new();
+    model2scb = new();
     
     //creating generator and driver
-    gen  = new(gen2driv,model2scb,gen_ended);
+    mod = new(model2scb);
+    gen  = new(gen2driv, mod, gen_ended);
     driv = new(gpio_vif, gen2driv, driv2mon, receivedPacket);
     mon  = new(gpio_vif, mon2scb, driv2mon, receivedPacket);
-    scb  = new(gpio_vif, mon2scb);
+    scb  = new(gpio_vif, mon2scb, model2scb);
   endfunction
   
   //

@@ -32,8 +32,9 @@ class monitor;
       -> receivedPacket;
 
       @(posedge gpio_vif.HCLK); // Address Phase
+      @(posedge gpio_vif.HCLK); 
       @(posedge gpio_vif.HCLK); // Data Phase
-      @(posedge gpio_vif.HCLK); // Output Should be recorded
+      @(posedge gpio_vif.HCLK);
       
       trans.HREADYOUT = gpio_vif.HREADYOUT;
       trans.HRDATA = gpio_vif.HRDATA;

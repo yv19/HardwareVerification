@@ -3,13 +3,13 @@
 clear -all
 analyze -clear
 # Set the file to be compiled and analyzed
-analyze -sv -f VGA_formal.vc
+analyze -sv -f vc_files/VGA_formal.vc
 # Define the testbench to be the top level module
 elaborate -top AHBVGA_DLS_WRAPPER
 
 # Setup global clocks and resets on the testbench
-clock HCLK
-reset -expression !(HRESETn)
+clock comp_vga_intf.HCLK
+reset -expression !(comp_vga_intf.HRESETn)
 
 # Setup task
 task -set <embedded>

@@ -28,10 +28,6 @@ class transaction;
         HREADY == 1'b1;
     }
 
-    constraint GPIOIN_valid_parity {
-        GPIOIN[16] == ((^GPIOIN) ^ PARITYSEL);
-    }
-
     constraint HWDATA_upper_bound {
         HWDATA <= 16'hffff;
     }

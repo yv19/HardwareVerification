@@ -309,7 +309,7 @@ AHB2MEM uAHB2MEM (
 );
 
 // AHBLite VGA Peripheral
-AHBVGA uAHBVGA (
+AHBVGA_DLS_WRAPPER uAHBVGA_DLS_WRAPPER (
     .HCLK(HCLK), 
     .HRESETn(HRESETn), 
     .HADDR(HADDR), 
@@ -343,31 +343,12 @@ AHBGPIO uAHBGPIO(
 	.GPIOOUT(LED[7:0])
 	);
 
-// Bind GPIO interface with GPIO peripheral 
-// bind AHBGPIO : uAHBGPIO AHBGPIO_Interface uAHBGPIO_Interface(
-//     .HCLK(HCLK),
-// 	.HRESETn(HRESETn),
-// 	.HADDR(HADDR),
-// 	.HWDATA(HWDATA),
-// 	.HREADY(HREADY),
-// 	.HWRITE(HWRITE),
-// 	.HTRANS(HTRANS),
-
-// 	.HSEL(HSEL),
-// 	.HRDATA(HRDATA),
-// 	.HREADYOUT(HREADYOUT),
-    
-// 	.GPIOIN(GPIOIN),
-// 	.GPIOOUT(GPIOOUT),
-
-// 	.gpio_dataout(gpio_dataout),
-//     .gpio_datain(gpio_datain),
-//     .gpio_dir(gpio_dir),
-//     .gpio_data_next(gpio_data_next),
-//     .last_HADDR(last_HADDR),
-//     .last_HTRANS(last_HTRANS),
-//     .last_HWRITE(last_HWRITE),
-//     .last_HSEL(last_HSEL)
-// );
+VGA_Monitor_top uVGA_Monitor_top(
+    .HCLK(HCLK),
+    .HRESETn(HRESETn),
+    .HSYNC(HSYNC), 
+    .VSYNC(VSYNC), 
+    .RGB({VGARED,VGAGREEN,VGABLUE})
+    );
 	
 endmodule

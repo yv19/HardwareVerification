@@ -13,101 +13,199 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# vsim -coverage work_opt -do "vga_sim.do" -sv_seed random -gui 
-# Start time: 23:31:35 on Dec 14,2022
+# vsim -coverage work_opt -do "do_files/gpio_sim.do" -sv_seed random -gui 
+# Start time: 14:52:58 on Dec 16,2022
 # Loading sv_std.std
 # Loading work.tbench_top(fast)
-# Loading work.vga_intf(fast)
-# Loading work.vga_test_sv_unit(fast)
+# Loading work.gpio_intf(fast)
+# Loading work.gpio_test_sv_unit(fast)
 # Loading work.test(fast)
-# Loading work.AHBVGA_DLS_WRAPPER(fast)
-# Loading work.AHBVGA(fast)
-# Loading work.VGAInterface(fast)
-# Loading work.GenericCounter(fast)
-# Loading work.GenericCounter(fast__1)
-# Loading work.GenericCounter(fast__2)
-# Loading work.vga_console(fast)
-# Loading work.font_rom(fast)
-# Loading work.dual_port_ram_sync(fast)
-# Loading work.vga_image(fast)
-# Loading work.dual_port_ram_sync(fast__1)
-# Loading work.comparator(fast)
-# Loading work.VGA_Monitor_test(fast)
-# Loading work.vga_intf(fast)
-# ** Warning: (vsim-3015) [PCDPC] - Port size (16) does not match connection size (14) for port 'address'. The port definition is at: rtl/AHB_VGA/vga_image.sv(45).
-#    Time: 0 ps  Iteration: 0  Instance: /tbench_top/uAHBVGA_DLS_WRAPPER/uAHBVGA1/uvga_image File: rtl/AHB_VGA/AHBVGASYS.sv Line: 123
-# ** Warning: (vsim-3015) [PCDPC] - Port size (15) does not match connection size (16) for port 'addr_b'. The port definition is at: rtl/AHB_VGA/dual_port_ram_sync.sv(46).
-#    Time: 0 ps  Iteration: 0  Instance: /tbench_top/uAHBVGA_DLS_WRAPPER/uAHBVGA1/uvga_image/uimage_ram File: rtl/AHB_VGA/vga_image.sv Line: 67
-# ** Warning: (vsim-3015) [PCDPC] - Port size (16) does not match connection size (14) for port 'address'. The port definition is at: rtl/AHB_VGA/vga_image.sv(45).
-#    Time: 0 ps  Iteration: 0  Instance: /tbench_top/uAHBVGA_DLS_WRAPPER/uAHBVGA_copy/uvga_image File: rtl/AHB_VGA/AHBVGASYS.sv Line: 123
-# ** Warning: (vsim-3015) [PCDPC] - Port size (15) does not match connection size (16) for port 'addr_b'. The port definition is at: rtl/AHB_VGA/dual_port_ram_sync.sv(46).
-#    Time: 0 ps  Iteration: 0  Instance: /tbench_top/uAHBVGA_DLS_WRAPPER/uAHBVGA_copy/uvga_image/uimage_ram File: rtl/AHB_VGA/vga_image.sv Line: 67
-# Sv_Seed = 1762287304
-# do vga_sim.do
-# Position of y is          15 and x is          27
-# Position of y is           0 and x is          12
-# Position of y is          24 and x is          21
-# Position of y is           0 and x is          21
-# Position of y is          29 and x is           1
-# Running task
+# Loading work.AHBGPIO(fast)
+# Loading work.gpio_intf(fast)
+# Sv_Seed = 3077706816
+# do do_files/gpio_sim.do
+# Valid input
+# Valid input
+# Valid input
+# Parity select out is 1
+# Valid input
+# Parity select out is 1
+# Valid input
+# Parity select out is 0
+# Valid input
+# Valid input
+# Valid input
+# Valid input
+# Valid input
+# Invalid input
+# Invalid input
+# Invalid input
+# Valid input
+# Valid input
+# Valid input
+# Parity select out is 0
+# Valid input
+# Valid input
+# Valid input
+# Valid input
+# Parity select out is 1
+# Invalid input
+# Invalid input
+# Invalid input
+# Invalid input
 # --------- [DRIVER] Reset Started ---------
 # --------- [DRIVER] Reset Ended---------
 # --------- [DRIVER-TRANSFER: 0] ---------
-# counter is tbench_top.uVGA_Monitor_test          0
-# counter is tbench_top.uVGA_Monitor_test          1
 # -----------------------------------------
 # --------- [DRIVER-TRANSFER: 1] ---------
-# counter is tbench_top.uVGA_Monitor_test          2
+# HREADYOUT 1 1
+# HRDATA c4a7 c4a7
+# GPIOOUT 0 0
+# PARITYERR 0 0
 # -----------------------------------------
 # --------- [DRIVER-TRANSFER: 2] ---------
-# counter is tbench_top.uVGA_Monitor_test          3
+# HREADYOUT 1 1
+# HRDATA 0 0
+# GPIOOUT 10000 10000
+# PARITYERR 1 1
 # -----------------------------------------
 # --------- [DRIVER-TRANSFER: 3] ---------
-# counter is tbench_top.uVGA_Monitor_test          4
+# HREADYOUT 1 1
+# HRDATA cfaa cfaa
+# GPIOOUT 1cfaa 1cfaa
+# PARITYERR 1 1
 # -----------------------------------------
 # --------- [DRIVER-TRANSFER: 4] ---------
-# counter is tbench_top.uVGA_Monitor_test          5
+# HREADYOUT 1 1
+# HRDATA 8cd9 8cd9
+# GPIOOUT 18cd9 18cd9
+# PARITYERR 0 0
 # -----------------------------------------
 # --------- [DRIVER-TRANSFER: 5] ---------
-# counter is tbench_top.uVGA_Monitor_test          6
+# HREADYOUT 1 1
+# HRDATA c948 c948
+# GPIOOUT c948 c948
+# PARITYERR 1 1
 # -----------------------------------------
 # --------- [DRIVER-TRANSFER: 6] ---------
-# counter is tbench_top.uVGA_Monitor_test          7
+# HREADYOUT 1 1
+# HRDATA 5899 5899
+# GPIOOUT c948 c948
+# PARITYERR 1 1
 # -----------------------------------------
 # --------- [DRIVER-TRANSFER: 7] ---------
-# counter is tbench_top.uVGA_Monitor_test          8
+# HREADYOUT 1 1
+# HRDATA 3f5a 3f5a
+# GPIOOUT c948 c948
+# PARITYERR 0 0
 # -----------------------------------------
 # --------- [DRIVER-TRANSFER: 8] ---------
-# counter is tbench_top.uVGA_Monitor_test          9
+# HREADYOUT 1 1
+# HRDATA c948 c948
+# GPIOOUT 1c948 1c948
+# PARITYERR 0 0
 # -----------------------------------------
 # --------- [DRIVER-TRANSFER: 9] ---------
-# counter is tbench_top.uVGA_Monitor_test         10
+# HREADYOUT 1 1
+# HRDATA c948 c948
+# GPIOOUT 1c948 1c948
+# PARITYERR 1 1
 # -----------------------------------------
 # --------- [DRIVER-TRANSFER: 10] ---------
-# counter is tbench_top.uVGA_Monitor_test         11
+# HREADYOUT 1 1
+# HRDATA d1b8 d1b8
+# GPIOOUT 1c948 1c948
+# PARITYERR 1 1
 # -----------------------------------------
 # --------- [DRIVER-TRANSFER: 11] ---------
-# counter is tbench_top.uVGA_Monitor_test         12
+# HREADYOUT 1 1
+# HRDATA 84d2 84d2
+# GPIOOUT c948 c948
+# PARITYERR 0 0
 # -----------------------------------------
 # --------- [DRIVER-TRANSFER: 12] ---------
-# counter is tbench_top.uVGA_Monitor_test         13
+# HREADYOUT 1 1
+# HRDATA 380b 380b
+# GPIOOUT 1c948 1c948
+# PARITYERR 1 1
 # -----------------------------------------
 # --------- [DRIVER-TRANSFER: 13] ---------
-# counter is tbench_top.uVGA_Monitor_test         14
+# HREADYOUT 1 1
+# HRDATA b43b b43b
+# GPIOOUT c948 c948
+# PARITYERR 1 1
 # -----------------------------------------
 # --------- [DRIVER-TRANSFER: 14] ---------
-# counter is tbench_top.uVGA_Monitor_test         15
+# HREADYOUT 1 1
+# HRDATA b8a2 b8a2
+# GPIOOUT c948 c948
+# PARITYERR 1 1
 # -----------------------------------------
-# Test Type 0: 0/3
-# Test Type 1: 0/2
-# Test Type 2: 0/1
-# Test Type 3: 0/2
-# Test Type 4: 0/2
-# Test Type 5: 0/4
-# Test Type 6: 1/1
-# ** Note: $finish    : rtl/AHB_VGA/Testbench/fake_scoreboard.sv(141)
-#    Time: 126240045 ns  Iteration: 2  Instance: /tbench_top/t1
+# --------- [DRIVER-TRANSFER: 15] ---------
+# HREADYOUT 1 1
+# HRDATA c948 c948
+# GPIOOUT 1c948 1c948
+# PARITYERR 0 0
+# -----------------------------------------
+# --------- [DRIVER-TRANSFER: 16] ---------
+# HREADYOUT 1 1
+# HRDATA 5f4e 5f4e
+# GPIOOUT 5f4e 5f4e
+# PARITYERR 1 1
+# -----------------------------------------
+# --------- [DRIVER-TRANSFER: 17] ---------
+# HREADYOUT 1 1
+# HRDATA 5f4e 5f4e
+# GPIOOUT 5f4e 5f4e
+# PARITYERR 0 0
+# -----------------------------------------
+# --------- [DRIVER-TRANSFER: 18] ---------
+# HREADYOUT 1 1
+# HRDATA 4867 4867
+# GPIOOUT 5f4e 5f4e
+# PARITYERR 1 1
+# -----------------------------------------
+# --------- [DRIVER-TRANSFER: 19] ---------
+# HREADYOUT 1 1
+# HRDATA 5f4e 5f4e
+# GPIOOUT 15f4e 15f4e
+# PARITYERR 0 0
+# -----------------------------------------
+# --------- [DRIVER-TRANSFER: 20] ---------
+# HREADYOUT 1 1
+# HRDATA ace4 ace4
+# GPIOOUT 1ace4 1ace4
+# PARITYERR 0 0
+# -----------------------------------------
+# --------- [DRIVER-TRANSFER: 21] ---------
+# HREADYOUT 1 1
+# HRDATA ace4 ace4
+# GPIOOUT 1ace4 1ace4
+# PARITYERR 1 1
+# -----------------------------------------
+# --------- [DRIVER-TRANSFER: 22] ---------
+# HREADYOUT 1 1
+# HRDATA ace4 ace4
+# GPIOOUT ace4 ace4
+# PARITYERR 0 0
+# -----------------------------------------
+# --------- [DRIVER-TRANSFER: 23] ---------
+# HREADYOUT 1 1
+# HRDATA ace4 ace4
+# GPIOOUT 1ace4 1ace4
+# PARITYERR 0 0
+# -----------------------------------------
+# HREADYOUT 1 1
+# HRDATA ace4 ace4
+# GPIOOUT ace4 ace4
+# PARITYERR 1 1
+# Test Type 0: 7/7
+# Test Type 1: 6/6
+# Test Type 2: 4/4
+# Test Type 3: 7/7
+# ** Note: $finish    : rtl/AHB_GPIO/CRT_DT/scoreboard.sv(105)
+#    Time: 965 ns  Iteration: 1  Instance: /tbench_top/t1
 # 1
-# Break in Function vga_test_sv_unit/scoreboard::closeFile at rtl/AHB_VGA/Testbench/fake_scoreboard.sv line 141
-# End time: 23:48:34 on Dec 14,2022, Elapsed time: 0:16:59
-# Errors: 0, Warnings: 4
+# Break in Function gpio_test_sv_unit/scoreboard::closeFile at rtl/AHB_GPIO/CRT_DT/scoreboard.sv line 105
+# End time: 14:53:15 on Dec 16,2022, Elapsed time: 0:00:17
+# Errors: 0, Warnings: 0

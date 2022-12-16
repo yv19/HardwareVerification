@@ -1,0 +1,11 @@
+rtl/AHB_VGA/AHBVGASYS.sv
+rtl/AHB_VGA/counter.sv
+rtl/AHB_VGA/dual_port_ram_sync.sv
+rtl/AHB_VGA/font_rom.sv
+rtl/AHB_VGA/vga_image.sv
+rtl/AHB_VGA/vga_console.sv
+rtl/AHB_VGA/vga_sync.sv
+rtl/AHB_VGA/DLS/ahbvga_dls_wrapper.sv
+rtl/AHB_VGA/Assertions/VGA_assertions.sv
+rtl/AHB_VGA/DLS/comparator.sv
+rtl/AHB_VGA/CRT_DT/vga_if.sv

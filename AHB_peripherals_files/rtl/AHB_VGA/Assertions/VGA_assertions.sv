@@ -1,21 +1,21 @@
-bind AHBVGA VGA_assertions u_VGA_assertions (
-    .HCLK(ahbvga_if.HCLK), 
-    .HRESETn(ahbvga_if.HRESETn), 
-    .HADDR(ahbvga_if.dut_cb.HADDR), 
-    .HWDATA(ahbvga_if.dut_cb.HWDATA), 
-    .HREADY(ahbvga_if.dut_cb.HREADY), 
-    .HWRITE(ahbvga_if.dut_cb.HWRITE), 
-    .HTRANS(ahbvga_if.dut_cb.HTRANS), 
-    .HSEL(ahbvga_if.dut_cb.HSEL), 
-    .VSYNC(ahbvga_if.VSYNC),
-    .HSYNC(ahbvga_if.HSYNC),
-    .HREADYOUT(ahbvga_if.HREADYOUT),
-    .RGB(ahbvga_if.RGB),
-    .HRDATA(ahbvga_if.HRDATA)
+bind AHBVGA_DLS_WRAPPER VGA_assertions u_VGA_assertions (
+    .HCLK(comp_vga_intf.HCLK), 
+    .HRESETn(comp_vga_intf.HRESETn), 
+    .HADDR(comp_vga_intf.dut_cb.HADDR), 
+    .HWDATA(comp_vga_intf.dut_cb.HWDATA), 
+    .HREADY(comp_vga_intf.dut_cb.HREADY), 
+    .HWRITE(comp_vga_intf.dut_cb.HWRITE), 
+    .HTRANS(comp_vga_intf.dut_cb.HTRANS), 
+    .HSEL(comp_vga_intf.dut_cb.HSEL), 
+    .VSYNC(comp_vga_intf.VSYNC),
+    .HSYNC(comp_vga_intf.HSYNC),
+    .HREADYOUT(comp_vga_intf.HREADYOUT),
+    .RGB(comp_vga_intf.RGB),
+    .HRDATA(comp_vga_intf.HRDATA)
     );
 
 
-`define DUT_IF ahbvga_if.dut_cb
+`define DUT_IF comp_vga_intf.dut_cb
 
 module VGA_assertions(
     input logic HCLK,

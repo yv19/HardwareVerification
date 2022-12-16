@@ -1,179 +1,86 @@
 Coverage Report Summary Data by file
 
 =================================================================================
-=== File: rtl/AHB_VGA/AHBVGASYS.sv
+=== File: rtl/AHB_GPIO/AHBGPIO_if.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
-    Stmts                           25        25         0    100.00
-    Branches                        11        11         0    100.00
-    FEC Condition Terms             11        10         1     90.90
-    FEC Expression Terms             2         2         0    100.00
-    Toggle Bins                    202       142        60     70.29
+    Toggle Bins                    280       145       135     51.78
 
 =================================================================================
-=== File: rtl/AHB_VGA/Testbench/DLS/ahbvga_dls_wrapper.sv
-=================================================================================
-    Enabled Coverage            Active      Hits    Misses % Covered
-    ----------------            ------      ----    ------ ---------
-    Toggle Bins                     92         0        92      0.00
-
-=================================================================================
-=== File: rtl/AHB_VGA/Testbench/DLS/comparator.sv
-=================================================================================
-    Enabled Coverage            Active      Hits    Misses % Covered
-    ----------------            ------      ----    ------ ---------
-    Stmts                            1         1         0    100.00
-    FEC Expression Terms             3         0         3      0.00
-    Toggle Bins                     46         8        38     17.39
-
-=================================================================================
-=== File: rtl/AHB_VGA/Testbench/driver.sv
-=================================================================================
-    Enabled Coverage            Active      Hits    Misses % Covered
-    ----------------            ------      ----    ------ ---------
-    Stmts                           66        66         0    100.00
-
-=================================================================================
-=== File: rtl/AHB_VGA/Testbench/environment.sv
+=== File: rtl/AHB_GPIO/AHBGPIO_modified.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
     Stmts                           24        24         0    100.00
-
-=================================================================================
-=== File: rtl/AHB_VGA/Testbench/fake_scoreboard.sv
-=================================================================================
-    Enabled Coverage            Active      Hits    Misses % Covered
-    ----------------            ------      ----    ------ ---------
-    Stmts                           51        51         0    100.00
-    Branches                         8         8         0    100.00
-    FEC Condition Terms              1         1         0    100.00
-
-=================================================================================
-=== File: rtl/AHB_VGA/Testbench/generator.sv
-=================================================================================
-    Enabled Coverage            Active      Hits    Misses % Covered
-    ----------------            ------      ----    ------ ---------
-    Stmts                          111       104         7     93.69
-    Branches                        22        15         7     68.18
-    FEC Condition Terms              4         4         0    100.00
-
-=================================================================================
-=== File: rtl/AHB_VGA/Testbench/model.sv
-=================================================================================
-    Enabled Coverage            Active      Hits    Misses % Covered
-    ----------------            ------      ----    ------ ---------
-    Stmts                         1334       246      1088     18.44
-    Branches                      1315       226      1089     17.18
-    FEC Condition Terms              6         5         1     83.33
-
-=================================================================================
-=== File: rtl/AHB_VGA/Testbench/monitor.sv
-=================================================================================
-    Enabled Coverage            Active      Hits    Misses % Covered
-    ----------------            ------      ----    ------ ---------
-    Stmts                           24        24         0    100.00
-    Branches                         2         1         1     50.00
-    FEC Condition Terms              3         2         1     66.66
-
-=================================================================================
-=== File: rtl/AHB_VGA/Testbench/vga_if.sv
-=================================================================================
-    Enabled Coverage            Active      Hits    Misses % Covered
-    ----------------            ------      ----    ------ ---------
-    Stmts                           24        24         0    100.00
-    Branches                         4         4         0    100.00
-    FEC Condition Terms              4         4         0    100.00
+    Branches                        12        12         0    100.00
+    FEC Condition Terms             13         4         9     30.76
     FEC Expression Terms             5         5         0    100.00
-    Toggle Bins                    298       122       176     40.93
+    Toggle Bins                    236        73       163     30.93
 
 =================================================================================
-=== File: rtl/AHB_VGA/Testbench/vga_tb_top.sv
+=== File: rtl/AHB_GPIO/CRT_DT/driver.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           33        33         0    100.00
+
+=================================================================================
+=== File: rtl/AHB_GPIO/CRT_DT/environment.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           22        22         0    100.00
+
+=================================================================================
+=== File: rtl/AHB_GPIO/CRT_DT/fake_scoreboard.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           27        27         0    100.00
+    Branches                         2         1         1     50.00
+    FEC Condition Terms              4         0         4      0.00
+
+=================================================================================
+=== File: rtl/AHB_GPIO/CRT_DT/generator.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           27        24         3     88.88
+    Branches                         6         3         3     50.00
+
+=================================================================================
+=== File: rtl/AHB_GPIO/CRT_DT/gpio_tb_top.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
     Stmts                            7         7         0    100.00
-    Toggle Bins                      6         4         2     66.66
+    Toggle Bins                      4         4         0    100.00
 
 =================================================================================
-=== File: rtl/AHB_VGA/Testbench/vga_test.sv
+=== File: rtl/AHB_GPIO/CRT_DT/gpio_test.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
-    Stmts                           14        14         0    100.00
+    Stmts                           19        19         0    100.00
 
 =================================================================================
-=== File: rtl/AHB_VGA/VGA_Testing/VGA_Monitor.sv
+=== File: rtl/AHB_GPIO/CRT_DT/model.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
-    Stmts                           16        15         1     93.75
-    Branches                        11         9         2     81.81
-    FEC Condition Terms              2         0         2      0.00
-    Toggle Bins                    194        17       177      8.76
+    Stmts                           36        30         6     83.33
+    Branches                        10         7         3     70.00
+    FEC Condition Terms             12         3         9     25.00
+    FEC Expression Terms            11         8         3     72.72
 
 =================================================================================
-=== File: rtl/AHB_VGA/counter.sv
+=== File: rtl/AHB_GPIO/CRT_DT/monitor.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
-    Stmts                            8         8         0    100.00
-    Branches                        10        10         0    100.00
-    FEC Condition Terms              3         3         0    100.00
-    Toggle Bins                     50        50         0    100.00
-
-=================================================================================
-=== File: rtl/AHB_VGA/dual_port_ram_sync.sv
-=================================================================================
-    Enabled Coverage            Active      Hits    Misses % Covered
-    ----------------            ------      ----    ------ ---------
-    Stmts                            6         6         0    100.00
-    Branches                         2         2         0    100.00
-    Toggle Bins                    172       120        52     69.76
-
-=================================================================================
-=== File: rtl/AHB_VGA/font_rom.sv
-=================================================================================
-    Enabled Coverage            Active      Hits    Misses % Covered
-    ----------------            ------      ----    ------ ---------
-    Stmts                         2051        19      2032      0.92
-    Branches                      2049        17      2032      0.82
-    Toggle Bins                     62        18        44     29.03
-
-=================================================================================
-=== File: rtl/AHB_VGA/vga_console.sv
-=================================================================================
-    Enabled Coverage            Active      Hits    Misses % Covered
-    ----------------            ------      ----    ------ ---------
-    Stmts                           48        48         0    100.00
-    Branches                        37        32         5     86.48
-    FEC Condition Terms             12         7         5     58.33
-    FEC Expression Terms            10         5         5     50.00
-    Toggle Bins                    446       312       134     69.95
-
-=================================================================================
-=== File: rtl/AHB_VGA/vga_image.sv
-=================================================================================
-    Enabled Coverage            Active      Hits    Misses % Covered
-    ----------------            ------      ----    ------ ---------
-    Stmts                            5         5         0    100.00
-    Toggle Bins                    276       158       118     57.24
-
-=================================================================================
-=== File: rtl/AHB_VGA/vga_sync.sv
-=================================================================================
-    Enabled Coverage            Active      Hits    Misses % Covered
-    ----------------            ------      ----    ------ ---------
-    Stmts                           15        15         0    100.00
-    Branches                        10        10         0    100.00
-    FEC Condition Terms             10        10         0    100.00
-    Toggle Bins                    102        84        18     82.35
+    Stmts                           16        16         0    100.00
 
 
-TOTAL COVERGROUP COVERAGE: 100.00%  COVERGROUP TYPES: 2
-
-TOTAL ASSERTION COVERAGE: 0.00%  ASSERTIONS: 1
-
-Total Coverage By File (code coverage only, filtered view): 44.71%
+Total Coverage By File (code coverage only, filtered view): 64.09%
 

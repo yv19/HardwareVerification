@@ -110,7 +110,7 @@ end
 
 //Color signals
 always@(posedge CLK) begin
-	if ( ( (HorzCount >= HorzTimeToBackPorchEnd ) && (HorzCount < HorzTimeToDisplayTimeEnd) ) &&
+	if ( ( (HorzCount >= HorzTimeToBackPorchEnd-1 ) && (HorzCount < HorzTimeToDisplayTimeEnd) ) &&
 		  ( (VertCount >= VertTimeToBackPorchEnd ) && (VertCount < VertTimeToDisplayTimeEnd) ) ) 
 		cout <= COLOUR_IN;
 	else
@@ -119,8 +119,8 @@ end
 
 //output horizontal and vertical addresses 
 always@(posedge CLK)begin
-	if ((HorzCount>HorzTimeToBackPorchEnd)&&(HorzCount<HorzTimeToDisplayTimeEnd))
-		addrh<=HorzCount-HorzTimeToBackPorchEnd;
+	if ((HorzCount>HorzTimeToBackPorchEnd-1)&&(HorzCount<HorzTimeToDisplayTimeEnd))
+		addrh<=HorzCount-HorzTimeToBackPorchEnd+2;
 	else
 		addrh<=10'b0000000000;
 end	

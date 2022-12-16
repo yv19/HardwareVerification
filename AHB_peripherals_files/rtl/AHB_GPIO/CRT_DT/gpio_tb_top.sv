@@ -19,6 +19,8 @@ module tbench_top;
   
   //Testcase instance, interface handle is passed to test as an argument
   test t1(intf);
+
+  AHBGPIO uAHBGPIO(intf);
   
   //enabling the wave dump
   // initial begin 

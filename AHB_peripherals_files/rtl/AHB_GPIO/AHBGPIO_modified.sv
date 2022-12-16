@@ -55,12 +55,6 @@ module AHBGPIO(
   
   integer i;
 
-  //  ahbgpio_if.HREADYOUT;
-  // logic [31:ahbgpio_if.HRDATA;
-  // logic [16:ahbgpio_if.GPIOOUT;
-  // logic PARITYERR;
-
-
   wire PARITY_OUT = (^gpio_dataout) ^ ahbgpio_if.PARITYSEL ^ INJECTPARITYFAULT;
   assign ahbgpio_if.PARITYERR = (^ahbgpio_if.GPIOIN) ^ ahbgpio_if.PARITYSEL ^ ahbgpio_if.GPIOIN[16] ^ INJECTPARITYFAULT;
   
