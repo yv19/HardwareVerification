@@ -137,3 +137,21 @@ Steps:
 - GPIO analysis can be done inside QuestaSim by looking at the waveform and checking the LED, HRDATA and GPIOOUT are expected given the assembly code.
 
 - For VGA analysis a helper function [VGA_top_monitor.sv](https://github.com/yv19/HardwareVerification/tree/main/AHB_peripherals_files/rtl/AHB_VGA/VGA_Top_Level_Helpers) has been made to record the frame output of the VGA for the top level test. The output can be seen inside the output directory as `monitor_vga.txt` inside the vga folder.
+
+# <u> Modifications </u>
+
+### **GPIO**
+
+- The modifications for the GPIO peripheral can be found in the [AHBGPIO_modified.sv](https://github.com/yv19/HardwareVerification/blob/main/AHB_peripherals_files/rtl/AHB_GPIO/AHBGPIO_modified.sv) file which is also tested formally using JasperGold. 
+
+- Testing is done formally through JasperGold via property assertions.
+
+- Error injection can be done inside the file by modifying the `INJECTPARITYFAULT` local parameter inside the modified rtl which will show a failure inside JasperGold if set to true.
+
+### **VGA**
+
+- The modifications for the VGA peripheral can be found in the the VGA directory on the folder [DLS](https://github.com/yv19/HardwareVerification/tree/main/AHB_peripherals_files/rtl/AHB_VGA/DLS). 2 files were made, a wrapper, a comparator which are specified as `ahbvga_dls_wrapper.sv` and `comparator.sv`.
+
+- Testing is done formally through JasperGold via property assertions.
+
+- Error injection can be done inside the file by modifying the `INJECTPARITYFAULT` local parameter inside the wrapper which will show a failure inside JasperGold if set to true.
