@@ -155,3 +155,7 @@ Steps:
 - Testing is done formally through JasperGold via property assertions.
 
 - Error injection can be done inside the file by modifying the `INJECTPARITYFAULT` local parameter inside the wrapper which will show a failure inside JasperGold if set to true.
+
+# <u> Note when looking at outputs </u>
+
+When looking at the output texts representing a frame please zoom out to see the full frame.
