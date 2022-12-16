@@ -141,22 +141,24 @@ The bugs are listed as follows:
 
 - 3 different test types were performed on the integrated system, each having multiple subtests. These test types are as follows:
 
-    1. GPIO working by itself (without the VGA)
-    2. VGA working by itself (without the GPIO)
-    3. GPIO and VGA working at the same time
+    - GPIO working by itself (without the VGA)
+    - VGA working by itself (without the GPIO)
+    - GPIO and VGA working at the same time
 
-- To do this a multitude of assembly code instructions were generated to test these.
+- To do this a multitude of assembly code instructions were generated and converted to hex.
 
 ### **Screenshots**
 
 <u> GPIO solo </u>
 
-[GPIO_solo]()
+[GPIO_solo](./Images/GPIO_solo.png)
 
 <u> VGA solo </u>
 
-[VGA_solo]()
+[VGA_solo](./Images/VGA_solo.png)
 
 <u> GPIO + VGA </u>
 
-[GPIO_VGA]()
+[GPIO_VGA_questa](./Images/GPIO_VGA_Questa.png)
+
+[GPIO_VGA_monitor](./Images/GPIO_VGA_Monitor.png)
