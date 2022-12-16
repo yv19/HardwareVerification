@@ -12,7 +12,7 @@ The high level overview of the project is to verify 2 peripherals given accordin
 # <u> Verification Plan + Report </u>
 
 - The Verification Plan can be found [here](https://github.com/yv19/HardwareVerification/blob/main/Verification%20Plan.md).
-- The Verification Report can be found [here]().
+- The Verification Report can be found [here](https://github.com/yv19/HardwareVerification/blob/main/Verification%20Report.md).
 
 # <u> Directory Structure </u>
 
@@ -156,6 +156,6 @@ Steps:
 
 - Error injection can be done inside the file by modifying the `INJECTPARITYFAULT` local parameter inside the wrapper which will show a failure inside JasperGold if set to true.
 
-# <u> Note when looking at outputs </u>
+## <u> Note when looking at outputs </u>
 
 When looking at the output texts representing a frame please zoom out to see the full frame.
