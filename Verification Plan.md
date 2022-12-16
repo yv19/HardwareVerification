@@ -48,7 +48,7 @@ In order to successfully apply CRT to our blocks, it would require us implement 
 
 Below is visual representation of what we intend to implement:
 
-![diagram](./CRT_testing.JPG)
+![diagram](./CRT_Testing.JPG)
 
 ### <u> Top-Level </u>
 
