@@ -4,17 +4,17 @@ This is the homepage of the above-named module, which is offered to MSc and 4th-
 
 The module is run by Dr John Wickerson (software) and Professor Pete Harrod (hardware).
 
-## <u> Overview </u>
+# <u> Overview </u>
 
 The high level overview of the project is to verify 2 peripherals given according to its specification. The first peripheral is GPIO (General Purpose Input Output) and the second is a VGA (Video Graphics Array). The specificationd of both peripherals are both given by the PDF's [`AHB Peripherals Specification.pdf`](https://github.com/yv19/HardwareVerification/blob/main/AHB%20Peripherals%20Specification.pdf) and [`AHB Peripherals Presentation.pdf`](https://github.com/yv19/HardwareVerification/blob/main/AHB%20Peripherals%20Specification.pdf). Systemverilog alongside Jaspergold will be used to test both peripherals along with a multitude of verification techniques that will be mentioned in more detail in the Verification Plan and Verification Report.
 
 
-## <u> Verification Plan + Report </u>
+# <u> Verification Plan + Report </u>
 
 - The Verification Plan can be found [here]().
 - The Verification Report can be found [here]().
 
-## <u> Directory Structure </u>
+# <u> Directory Structure </u>
 
 </br>
 
@@ -55,7 +55,7 @@ The high level overview of the project is to verify 2 peripherals given accordin
     ├── code.hex
     └── readme.txt
 ```
-## <u> Setup </u>
+# <u> Setup </u>
 
 1. SSH into your respective college unix server (ssh -X your-college-name@ee-mill3.ee.ic.ac.uk) or login with your MobaXterm account.
 2. Copy/Clone git repository to personal directory
@@ -63,7 +63,7 @@ The high level overview of the project is to verify 2 peripherals given accordin
 4. Type `source /usr/local/mentor/QUESTA-CORE-PRIME_10.7c/settings.sh` to set the QuestaSim source for your terminal.
 5. Type `source /usr/local/cadence/JASPER_2018.06.002/settings.sh` to set the JasperGold source for your terminal.
 
-## <u> GPIO Testing </u>
+# <u> GPIO Testing </u>
 </br>
 This section will depict how to perform different tests on the GPIO peripheral. <b> Please perform the <u>Setup</u> section before moving onto this section. </b>
 
@@ -94,7 +94,7 @@ The seed is randomized between every run which means every time the test is re-r
 
 - Right click any of the properties in the Property table and press `Prove Property` to attempt prove properties individually or `Prove Task` to attempt to prove all properties.
 
-## <u> VGA Testing </u>
+# <u> VGA Testing </u>
 
 ### **Unit Level Tests**
 
@@ -120,7 +120,7 @@ The seed is randomized between every run which means every time the test is re-r
 
 - Right click any of the properties in the Property table and press `Prove Property` to attempt prove properties individually or `Prove Task` to attempt to prove all properties.
 
-## <u> Integration Testing </u>
+# <u> Integration Testing </u>
 
 To perform integration testing you will need to generate a code.hex file by selecting any of the assemblies written inside the [src](https://github.com/yv19/HardwareVerification/tree/main/AHB_peripherals_files/src) directory and generating a hex equivalent version of the assembly code.
 
